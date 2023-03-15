@@ -1,8 +1,8 @@
-function Header ({text, classHeader}) {
+function Header({ text, classHeader }) {
     return (
-    <header>
-        <h1 className={classHeader}>{text}</h1>
-    </header>
+        <header >
+            <h1 className={classHeader}>{text}</h1>
+        </header>
     )
 };
 
