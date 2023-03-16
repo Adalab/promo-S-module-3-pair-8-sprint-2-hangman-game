@@ -13,6 +13,10 @@ import Dummy from './Dummy';
 import SolutionLetters from './SolutionLetters';
 import ErrorLetters from './ErrorLetters';
 import Form from './Form';
+import Footer from './Footer';
+import Options from './Options';
+import Instructions from './Instructions';
+import { Route, Routes } from 'react-router-dom';
 
 
 function App() {
@@ -76,13 +80,17 @@ function App() {
     }
   };
 
-
-
-
   return (
     <div className='page'>
       <Header text="Juego del ahorcado" classHeader="header__title" />
       <main className='main'>
+        <Routes>
+          <Route path='/' element={<SolutionLetters></SolutionLetters>}/>
+          <Route path='/' element={<ErrorLetters></ErrorLetters>}/>
+          <Route path='/' element={<Form></Form>}/>
+          <Route path='/instructions' element={<Instructions></Instructions>}/>
+          <Route path='/options' element={<Options></Options>}/>
+        </Routes>
         <section>
           <SolutionLetters userLetters={userLetters} word={word}></SolutionLetters>
           <ErrorLetters userLetters={userLetters} word={word} />
@@ -90,6 +98,7 @@ function App() {
         </section>
         <Dummy numberOfErrors={getNumberOfErrors()}></Dummy>
       </main>
+      <Footer></Footer>
     </div>
   );
 }
