@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Dummy({ numberOfErrors }) {
 
   return (
@@ -19,5 +21,5 @@ function Dummy({ numberOfErrors }) {
     </section>
   );
 }
-
+Dummy.propTypes = { numberOfErrors }
 export default Dummy;
