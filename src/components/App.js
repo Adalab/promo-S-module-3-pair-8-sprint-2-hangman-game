@@ -56,19 +56,19 @@ function App() {
     return errorLetters.length;
   };
 
-  const renderErrorLetters = () => {
-    const errorLetters = userLetters.filter(
-      (letter) =>
-        word.toLocaleLowerCase().includes(letter.toLocaleLowerCase()) === false
-    );
-    return errorLetters.map((letter, index) => {
-      return (
-        <li key={index} className='letter'>
-          {letter}
-        </li>
+  /*   const renderErrorLetters = () => {
+      const errorLetters = userLetters.filter(
+        (letter) =>
+          word.toLocaleLowerCase().includes(letter.toLocaleLowerCase()) === false
       );
-    });
-  };
+      return errorLetters.map((letter, index) => {
+        return (
+          <li key={index} className='letter'>
+            {letter}
+          </li>
+        );
+      });
+    }; */
 
   const handleLastLetter = (value) => {
     value = value.toLocaleLowerCase();
@@ -85,17 +85,18 @@ function App() {
       <Header text="Juego del ahorcado" classHeader="header__title" />
       <main className='main'>
         <Routes>
-          <Route path='/' element={<SolutionLetters></SolutionLetters>}/>
-          <Route path='/' element={<ErrorLetters></ErrorLetters>}/>
-          <Route path='/' element={<Form></Form>}/>
-          <Route path='/instructions' element={<Instructions></Instructions>}/>
-          <Route path='/options' element={<Options></Options>}/>
+
+          <Route path='/' element={
+            <section>
+              <SolutionLetters userLetters={userLetters} word={word}></SolutionLetters>
+              <ErrorLetters userLetters={userLetters} word={word}></ErrorLetters>
+              <Form handleSubmit={handleSubmit} handleKeyDown={handleKeyDown} handleChange={handleChange} lastLetter={lastLetter}></Form>
+            </section>} />
+
+          <Route path='/instructions' element={<Instructions></Instructions>} />
+          <Route path='/options' element={<Options></Options>} />
         </Routes>
-        <section>
-          <SolutionLetters userLetters={userLetters} word={word}></SolutionLetters>
-          <ErrorLetters userLetters={userLetters} word={word} />
-          <Form handleSubmit={handleSubmit} handleKeyDown={handleKeyDown} handleChange={handleChange} lastLetter={lastLetter} />
-        </section>
+
         <Dummy numberOfErrors={getNumberOfErrors()}></Dummy>
       </main>
       <Footer></Footer>
